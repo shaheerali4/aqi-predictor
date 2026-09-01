@@ -15,8 +15,10 @@ End-to-end AQI forecasting project for Karachi with a lightweight, student-frien
 - live API refresh
 - reproducible EDA outputs
 - serverless FastAPI endpoint
-- public GitHub Pages dashboard
+- public Streamlit dashboard
 - GitHub Actions automation
+
+Public Streamlit app: https://aqi-predictor-j2mafjiq8p2gtvsrcc4rg2.streamlit.app
 
 ## Overview
 
@@ -95,12 +97,11 @@ AQI-Predictor/
 └── LICENSE
 ```
 
-The serverless API is configured through `vercel.json`. It exposes `/health` and
-`/forecast?city=Karachi&live=true` through a Vercel Python function after linking a
-Vercel project.
+The FastAPI endpoint in `api/index.py` exposes `/health` and
+`/forecast?city=Karachi&live=true` for local testing or a future API host.
 
-The root `index.html` is also GitHub Pages-compatible. On GitHub Pages it reads the
-public `forecast.json`, which is refreshed hourly by `.github/workflows/pages_update.yml`.
+The Streamlit dashboard is deployed publicly on Streamlit Community Cloud from
+`app/streamlit_app.py`.
 
 ## Data Sources
 
@@ -328,9 +329,12 @@ Then open `http://127.0.0.1:8000/docs` or call `/forecast?live=true`.
 
 ### Public dashboard
 
-The public dashboard is served from GitHub Pages after Pages is enabled for the
-repository. It uses the scheduled forecast update workflow, so it remains useful
-even though GitHub Pages itself is static.
+The public dashboard is deployed on Streamlit Community Cloud:
+
+https://aqi-predictor-j2mafjiq8p2gtvsrcc4rg2.streamlit.app
+
+It runs `app/streamlit_app.py` directly and refreshes live data through the
+Open-Meteo APIs.
 
 ## Tests
 
@@ -348,7 +352,7 @@ The current project passes all tests.
 - the local feature store and model registry remain the default development backends
 - the project currently focuses on Karachi by default
 - AQI is based on the available Open-Meteo fields and daily aggregation
-- Vercel deployment still requires the user's Vercel account/project credentials
+- Streamlit Community Cloud deployment depends on the configured GitHub repository
 
 ## Future Improvements
 
@@ -357,5 +361,5 @@ The current project passes all tests.
 - plug in a cloud feature store
 - plug in a cloud model registry
 - compare with more forecasting models
-- add deployment automation
+- add deployment monitoring
 - add richer explainability charts

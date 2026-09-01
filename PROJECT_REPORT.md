@@ -23,7 +23,7 @@ Air-quality conditions are strongly influenced by atmospheric conditions and pol
 - automate the pipeline with GitHub Actions
 - support live API refresh
 - expose a serverless-ready API endpoint
-- publish a public dashboard through GitHub Pages
+- publish a public Streamlit dashboard
 
 ## Requirements
 
@@ -342,12 +342,13 @@ so it does not depend on a previous runner's local filesystem.
 
 `api/index.py` provides `/health` and `/forecast` endpoints. Passing `live=true`
 fetches current API values without writing to the filesystem, which is appropriate
-for a serverless read-only runtime. `vercel.json` configures the Python function for
-Vercel deployment.
+for a serverless read-only runtime. The endpoint can be hosted separately if an API
+deployment is needed in the future.
 
-The public `index.html` dashboard is also GitHub Pages-compatible. On GitHub Pages it
-reads `forecast.json`, which is regenerated hourly by
-`.github/workflows/pages_update.yml` and committed by the Actions bot.
+The Streamlit dashboard is deployed publicly through Streamlit Community Cloud from
+`app/streamlit_app.py`:
+
+https://aqi-predictor-j2mafjiq8p2gtvsrcc4rg2.streamlit.app
 
 ## Testing
 
@@ -379,9 +380,9 @@ The app runs locally with:
 streamlit run app/streamlit_app.py
 ```
 
-The API can be deployed to Vercel with the included `vercel.json`; the public static
-dashboard is deployed through GitHub Pages. Vercel deployment remains optional and
-requires a Vercel account and project credentials.
+The public dashboard is deployed to Streamlit Community Cloud. The deployment uses
+the public GitHub repository, the `main` branch, and `app/streamlit_app.py` as its
+entrypoint.
 
 ## Limitations
 
@@ -400,7 +401,7 @@ requires a Vercel account and project credentials.
 - add a cloud model registry
 - try stronger time-series models
 - add richer SHAP charts
-- deploy the dashboard publicly
+- add deployment monitoring
 
 ## Conclusion
 
