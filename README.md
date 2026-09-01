@@ -15,6 +15,7 @@ End-to-end AQI forecasting project for Karachi with a lightweight, student-frien
 - live API refresh
 - reproducible EDA outputs
 - serverless FastAPI endpoint
+- public GitHub Pages dashboard
 - GitHub Actions automation
 
 ## Overview
@@ -97,6 +98,9 @@ AQI-Predictor/
 The serverless API is configured through `vercel.json`. It exposes `/health` and
 `/forecast?city=Karachi&live=true` through a Vercel Python function after linking a
 Vercel project.
+
+The root `index.html` is also GitHub Pages-compatible. On GitHub Pages it reads the
+public `forecast.json`, which is refreshed hourly by `.github/workflows/pages_update.yml`.
 
 ## Data Sources
 
@@ -321,6 +325,12 @@ uvicorn api.index:app --reload
 ```
 
 Then open `http://127.0.0.1:8000/docs` or call `/forecast?live=true`.
+
+### Public dashboard
+
+The public dashboard is served from GitHub Pages after Pages is enabled for the
+repository. It uses the scheduled forecast update workflow, so it remains useful
+even though GitHub Pages itself is static.
 
 ## Tests
 

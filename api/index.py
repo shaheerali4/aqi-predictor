@@ -23,12 +23,14 @@ def forecast(
     try:
         if live:
             features = refresh_recent_data(city=city, country=country, persist=False)
-            result, _ = forecast_from_latest(features)
+            result, latest = forecast_from_latest(features)
         else:
-            result, _ = forecast_three_days(city=city)
+            result, latest = forecast_three_days(city=city)
+        latest_aqi = latest["aqi"].iloc[-1] if "aqi" in latest.columns else None
         return {
             "city": city,
             "country": country,
+            "latest_observed_aqi": latest_aqi,
             "forecast": result.to_dict(orient="records"),
         }
     except Exception as exc:

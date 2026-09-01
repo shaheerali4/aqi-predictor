@@ -23,6 +23,7 @@ Air-quality conditions are strongly influenced by atmospheric conditions and pol
 - automate the pipeline with GitHub Actions
 - support live API refresh
 - expose a serverless-ready API endpoint
+- publish a public dashboard through GitHub Pages
 
 ## Requirements
 
@@ -344,6 +345,10 @@ fetches current API values without writing to the filesystem, which is appropria
 for a serverless read-only runtime. `vercel.json` configures the Python function for
 Vercel deployment.
 
+The public `index.html` dashboard is also GitHub Pages-compatible. On GitHub Pages it
+reads `forecast.json`, which is regenerated hourly by
+`.github/workflows/pages_update.yml` and committed by the Actions bot.
+
 ## Testing
 
 The test suite includes:
@@ -374,7 +379,8 @@ The app runs locally with:
 streamlit run app/streamlit_app.py
 ```
 
-The API can be deployed to Vercel with the included `vercel.json`; actual deployment
+The API can be deployed to Vercel with the included `vercel.json`; the public static
+dashboard is deployed through GitHub Pages. Vercel deployment remains optional and
 requires a Vercel account and project credentials.
 
 ## Limitations
