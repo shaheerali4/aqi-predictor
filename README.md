@@ -18,7 +18,7 @@ End-to-end AQI forecasting project for Karachi with a lightweight, student-frien
 - public Streamlit dashboard
 - GitHub Actions automation
 
-Public Streamlit app: https://aqi-predictor-j2mafjiq8p2gtvsrcc4rg2.streamlit.app
+Public Streamlit app: https://shaheerali4-aqi-predictor.streamlit.app/
 
 ## Overview
 
@@ -331,7 +331,7 @@ Then open `http://127.0.0.1:8000/docs` or call `/forecast?live=true`.
 
 The public dashboard is deployed on Streamlit Community Cloud:
 
-https://aqi-predictor-j2mafjiq8p2gtvsrcc4rg2.streamlit.app
+https://shaheerali4-aqi-predictor.streamlit.app/
 
 It runs `app/streamlit_app.py` directly and refreshes live data through the
 Open-Meteo APIs.

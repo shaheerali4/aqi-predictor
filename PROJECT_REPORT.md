@@ -348,7 +348,7 @@ deployment is needed in the future.
 The Streamlit dashboard is deployed publicly through Streamlit Community Cloud from
 `app/streamlit_app.py`:
 
-https://aqi-predictor-j2mafjiq8p2gtvsrcc4rg2.streamlit.app
+https://shaheerali4-aqi-predictor.streamlit.app/
 
 ## Testing
 
