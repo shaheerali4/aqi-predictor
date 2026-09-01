@@ -1,0 +1,16 @@
+.env
+.venv/
+venv/
+env/
+__pycache__/
+.pytest_cache/
+.pytest-*/
+.mypy_cache/
+.ruff_cache/
+.streamlit/
+*.pyc
+*.pyo
+*.pyd
+*.log
+data/cache/
+*.tmp

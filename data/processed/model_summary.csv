@@ -1,0 +1,4 @@
+horizon,best_model,rmse,mae,r2,artifact_path
+1,random_forest,5.518742421045416,4.984627976190475,0.7729352339413194,models\random_forest_h1.joblib
+2,random_forest,9.906829708483535,9.147038690476194,0.2682901589490784,models\random_forest_h2.joblib
+3,ridge,13.996594702150972,12.297058621105966,-0.4605427535664264,models\ridge_h3.joblib

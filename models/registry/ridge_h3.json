@@ -1,0 +1,84 @@
+{
+  "model_name": "ridge",
+  "horizon": 3,
+  "artifact_path": "models\\ridge_h3.joblib",
+  "metrics": {
+    "rmse": 13.996594702150972,
+    "mae": 12.297058621105966,
+    "r2": -0.4605427535664264
+  },
+  "feature_columns": [
+    "pm25",
+    "pm10",
+    "co",
+    "no2",
+    "so2",
+    "o3",
+    "temperature",
+    "humidity",
+    "pressure",
+    "wind_speed",
+    "wind_direction",
+    "year",
+    "month",
+    "day",
+    "day_of_week",
+    "is_weekend",
+    "week_of_year",
+    "aqi_lag_1",
+    "aqi_lag_2",
+    "aqi_lag_3",
+    "pm25_lag_1",
+    "pm25_lag_2",
+    "pm25_lag_3",
+    "pm10_lag_1",
+    "pm10_lag_2",
+    "pm10_lag_3",
+    "temperature_lag_1",
+    "temperature_lag_2",
+    "temperature_lag_3",
+    "humidity_lag_1",
+    "humidity_lag_2",
+    "humidity_lag_3",
+    "pressure_lag_1",
+    "pressure_lag_2",
+    "pressure_lag_3",
+    "wind_speed_lag_1",
+    "wind_speed_lag_2",
+    "wind_speed_lag_3",
+    "aqi_roll_3",
+    "aqi_roll_7",
+    "pm25_roll_3",
+    "pm25_roll_7",
+    "aqi_change",
+    "aqi_change_rate"
+  ],
+  "metadata": {
+    "comparison": [
+      {
+        "model_name": "random_forest",
+        "rmse": 6.203305249108881,
+        "mae": 5.6343269230769275,
+        "r2": -2.0790313155627835
+      },
+      {
+        "model_name": "extra_trees",
+        "rmse": 5.451792002080676,
+        "mae": 5.127884615384629,
+        "r2": -1.378188955359286
+      },
+      {
+        "model_name": "ridge",
+        "rmse": 5.394327642406558,
+        "mae": 4.51913314336303,
+        "r2": -1.3283187950732018
+      },
+      {
+        "model_name": "mlp_neural_network",
+        "rmse": 14.02556180617221,
+        "mae": 12.653109395608812,
+        "r2": -14.740130695693425
+      }
+    ]
+  }
+}
