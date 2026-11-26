@@ -72,14 +72,22 @@ class AppConfig:
 
 
 def resolve_city_config(city: str | None = None, country: str | None = None) -> CityConfig:
-    selected_city = city or os.getenv("CITY", "Karachi")
-    preset = CITY_PRESETS.get(selected_city)
+    selected_city = (city or os.getenv("CITY", "Karachi")).strip()
+    preset_name = next(
+        (
+            preset_city
+            for preset_city in CITY_PRESETS
+            if preset_city.casefold() == selected_city.casefold()
+        ),
+        None,
+    )
+    preset = CITY_PRESETS.get(preset_name) if preset_name else None
     latitude = os.getenv("CITY_LATITUDE")
     longitude = os.getenv("CITY_LONGITUDE")
     timezone = os.getenv("CITY_TIMEZONE")
     if preset is not None:
         return CityConfig(
-            city=selected_city,
+            city=preset_name,
             country=country or preset["country"],
             latitude=float(latitude or preset["latitude"]),
             longitude=float(longitude or preset["longitude"]),

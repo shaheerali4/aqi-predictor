@@ -1,0 +1,41 @@
+name: Configuration tests
+
+on:
+  pull_request:
+    paths:
+      - "src/config.py"
+      - "tests/test_config.py"
+      - "requirements-test.txt"
+      - ".github/workflows/config-tests.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "src/config.py"
+      - "tests/test_config.py"
+      - "requirements-test.txt"
+      - ".github/workflows/config-tests.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-test.txt
+
+      - name: Install test dependencies
+        run: python -m pip install --requirement requirements-test.txt
+
+      - name: Run configuration tests
+        run: python -m pytest -q tests/test_config.py
