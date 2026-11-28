@@ -22,9 +22,10 @@ EDA_DIR = PROCESSED_DIR / "eda"
 def run_eda(df: pd.DataFrame | None = None, output_dir: Path | None = None) -> pd.DataFrame:
     """Create reproducible EDA tables and charts from the feature dataset."""
 
-    frame = (df.copy() if df is not None else load_feature_dataset()).sort_values("date")
+    frame = df.copy() if df is not None else load_feature_dataset()
     if frame.empty:
         raise RuntimeError("Feature dataset is empty. Run the backfill pipeline first.")
+    frame = frame.sort_values("date")
     frame["date"] = pd.to_datetime(frame["date"])
     destination = ensure_dir(output_dir or EDA_DIR)
 
