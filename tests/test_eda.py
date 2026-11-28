@@ -1,5 +1,7 @@
 import pandas as pd
+import pytest
 
+from src import feature_pipeline
 from src.eda import run_eda
 
 
@@ -23,3 +25,13 @@ def test_run_eda_writes_summary_and_charts(tmp_path):
     assert (tmp_path / "aqi_trend.png").exists()
     assert (tmp_path / "distributions.png").exists()
     assert (tmp_path / "correlation.png").exists()
+
+
+def test_run_eda_guides_backfill_when_default_dataset_is_missing(tmp_path, monkeypatch):
+    monkeypatch.setattr(feature_pipeline, "PROCESSED_DIR", tmp_path)
+    output_dir = tmp_path / "eda"
+
+    with pytest.raises(RuntimeError, match="Run the backfill pipeline first"):
+        run_eda(output_dir=output_dir)
+
+    assert not output_dir.exists()
